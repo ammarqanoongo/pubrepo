@@ -1,0 +1,72 @@
+---
+- name: Installing Docker & Running Container
+  hosts: client
+  become: true
+  tasks:
+    - name: Update Package Manager
+      yum:
+        name: "*"
+        state: latest
+
+    - name: Install yum-utils
+      package:
+        name: yum-utils
+        state: present
+
+    - name: Add Docker repository
+      yum_repository:
+        name: "docker-ce"
+        description: "Docker CE Repository"
+        baseurl: "https://download.docker.com/linux/centos/7/$basearch/stable"
+        gpgcheck: yes
+        gpgkey: "https://download.docker.com/linux/centos/gpg"
+
+    - name: Install Docker packages
+      shell: "sudo yum install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin"
+
+    - name: Copying Dockerfile
+      copy:
+        src: /python/Dockerfile
+        dest: /dir
+
+    - name: Copying Python Script
+      copy:
+        src: /python/getscript.py
+        dest: /dir
+
+    - name: Installing Python Docker library
+      shell: "sudo yum install -y python-docker"
+
+    - name: Assign permissions to Dockerfile
+      file:
+        path: /dir/Dockerfile
+        mode: 0755
+        owner: root
+
+    - name: Installing & Starting httpd
+      yum:
+        name: httpd
+        state: started
+        enabled: yes
+
+    - name: Assign permissions to script
+      file:
+        path: /dir/getscript.py
+        mode: 0755
+        owner: root
+        group: root
+
+    - name: Build Docker image
+      docker_image:
+        name: myrequest
+        build:
+          pull: no
+          path: /dir
+        source: build
+        force: yes
+
+    - name: Run the Docker container
+      docker_container:
+        name: myrequest1
+        image: myrequest
+        detach: true
