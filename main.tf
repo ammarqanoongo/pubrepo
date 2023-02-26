@@ -8,7 +8,8 @@ terraform {
 }
 
 provider "aws" {
-  access_key = "AKIATYYNU3AJV3533VG3"
-  secret_key = "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"
+  access_key = "AKIATYYNU3AJXBS5XYXA"
+  secret_key = "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"
   region = "us-east-1"
+  skip_credentials_validation = true
 }
