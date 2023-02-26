@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Changing Directory') {
             steps {
-                sh 'cd /Users/ammarqanoongo/Documents/TerraformPipeline/terraform-files'
+                sh 'cd /Users/ammarqanoongo/Documents/TerraformPipeline'
             }
         }
         stage('Initializing Terraform Backend') {
