@@ -4,6 +4,8 @@ pipeline {
         stage('Changing Directory') {
             steps {
                 sh 'cd /Users/ammarqanoongo/Documents/TerraformPipeline'
+                sh 'ls'
+                sh 'pwd'
             }
         }
         stage('Initializing Terraform Backend') {
