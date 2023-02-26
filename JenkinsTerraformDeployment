@@ -3,7 +3,6 @@ pipeline {
     stages {
         stage('Changing Directory') {
             steps {
-                sh 'cd /Users/ammarqanoongo/Documents/TerraformPipeline'
                 sh 'ls'
                 sh 'pwd'
             }
