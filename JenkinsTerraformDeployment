@@ -1,12 +1,9 @@
 pipeline {
     agent any
-    environment {
-        PATH = "/usr/local/bin:${env.PATH}"
-    }
     stages {
         stage('Changing Directory') {
             steps {
-                sh 'cd /Users/ammarqanoongo/Documents/TerraformPipeline'
+                sh 'cd /Users/ammarqanoongo/Documents/TerraformPipeline/terraform-files'
             }
         }
         stage('Initializing Terraform Backend') {
