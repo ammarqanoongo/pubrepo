@@ -1,12 +1,6 @@
 pipeline {
     agent any
     stages {
-        stage('Install Terraform') {
-            steps {
-                sh 'brew upgrade'
-                sh 'brew install terraform'
-            }
-        }
         stage('Changing Directory') {
             steps {
                 sh 'cd /Users/ammarqanoongo/Documents/TerraformPipline'
