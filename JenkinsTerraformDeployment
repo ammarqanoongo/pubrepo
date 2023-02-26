@@ -1,31 +1,30 @@
 pipeline {
     agent any
     stages {
-        stage('List Repo Content, Check Working Repo') {
+        stage('Change Repo') {
             steps {
-                sh 'ls'
-                sh 'pwd'
+                sh 'cd /Users/ammarqanoongo/.jenkins/workspace/terraform-deployment-aws-ec2'
             }
         }
         stage('Initializing Terraform Backend') {
             steps {
-                sh 'terraform init'
+                sh '/usr/local/bin/terraform init'
             }
         }
         stage('Format Check & Plan') {
             steps {
-                sh 'terraform fmt -check'
-                sh 'terraform plan'
+                sh '/usr/local/bin/terraform fmt -check'
+                sh '/usr/local/bin/terraform plan'
             }
         }
         stage('Apply Configurations') {
             steps {
-                sh 'terraform apply'
+                sh '/usr/local/bin/terraform apply'
             }
         }
         stage('Destroy Configuration') {
             steps {
-                sh 'terraform destroy'
+                sh '/usr/local/bin/terraform destroy'
             }
         }
     }
