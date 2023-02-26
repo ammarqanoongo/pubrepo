@@ -18,12 +18,12 @@ pipeline {
         }
         stage('Apply Configurations') {
             steps {
-                sh '/usr/local/bin/terraform apply'
+                sh '/usr/local/bin/terraform apply -auto-approve'
             }
         }
         stage('Destroy Configuration') {
             steps {
-                sh '/usr/local/bin/terraform destroy'
+                sh '/usr/local/bin/terraform destroy -auto-approve'
             }
         }
     }
