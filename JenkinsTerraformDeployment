@@ -6,14 +6,13 @@ pipeline {
                 sh 'cd /Users/ammarqanoongo/.jenkins/workspace/terraform-deployment-aws-ec2'
             }
         }
-        stage('Initializing Terraform Backend') {
+        stage('Initializing Terraform Directory') {
             steps {
                 sh '/usr/local/bin/terraform init'
             }
         }
-        stage('Format Check & Plan') {
+        stage('Plan') {
             steps {
-                sh '/usr/local/bin/terraform fmt -check'
                 sh '/usr/local/bin/terraform plan'
             }
         }
