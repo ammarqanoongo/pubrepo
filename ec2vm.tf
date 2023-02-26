@@ -6,9 +6,9 @@ module "ec2_instance" {
 
   name = "instance-${each.key}"
 
-  ami                    = "ami-0cc87e5027adcdca8"
+  ami                    = "ami-0dfcb1ef8550277af"
   instance_type          = "t2.micro"
-  key_name               = "Terraform"
+  key_name               = "pipeline"
   monitoring             = true
 
   tags = {
