@@ -3,10 +3,8 @@ pipeline {
     stages {
         stage('Install Terraform') {
             steps {
-                sh '''
-                    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-                    brew install terraform
-                '''
+                sh 'brew upgrade'
+                sh 'brew install terraform'
             }
         }
         stage('Changing Directory') {
