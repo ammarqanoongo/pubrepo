@@ -1,9 +1,17 @@
 pipeline {
     agent any
     stages {
+        stage('Install Terraform') {
+            steps {
+                sh '''
+                    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+                    brew install terraform
+                '''
+            }
+        }
         stage('Changing Directory') {
             steps {
-                sh 'cd /Users/ammarqanoongo/Documents/TerraformPipeline'
+                sh 'cd /Users/ammarqanoongo/Documents/TerraformPipline'
             }
         }
         stage('Initializing Terraform Backend') {
