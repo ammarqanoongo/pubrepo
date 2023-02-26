@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('Changing Directory') {
+        stage('List Repo Content, Check Working Repo') {
             steps {
                 sh 'ls'
                 sh 'pwd'
@@ -9,23 +9,23 @@ pipeline {
         }
         stage('Initializing Terraform Backend') {
             steps {
-                sh '/usr/local/bin/terraform init'
+                sh 'terraform init'
             }
         }
         stage('Format Check & Plan') {
             steps {
-                sh '/usr/local/bin/terraform fmt -check'
-                sh '/usr/local/bin/terraform plan'
+                sh 'terraform fmt -check'
+                sh 'terraform plan'
             }
         }
         stage('Apply Configurations') {
             steps {
-                sh '/usr/local/bin/terraform apply'
+                sh 'terraform apply'
             }
         }
         stage('Destroy Configuration') {
             steps {
-                sh '/usr/local/bin/terraform destroy'
+                sh 'terraform destroy'
             }
         }
     }
